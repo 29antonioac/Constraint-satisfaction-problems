@@ -51,3 +51,9 @@ cousin(X,Y) :-
     parent(P,X),
     parent(Q,Y),
     sibling(P,Q).
+
+ancestor(X,Y) :-
+    parent(X,Y).
+ancestor(X,Y) :-
+    parent(X,Z),
+    ancestor(Z,Y).

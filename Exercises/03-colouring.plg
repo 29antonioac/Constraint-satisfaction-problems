@@ -1,0 +1,29 @@
+region(wa).
+region(nt).
+region(q).
+region(nsw).
+region(v).
+region(sa).
+region(t).
+
+color(red).
+color(green).
+color(blue).
+
+adjacentTo(wa, nt).
+adjacentTo(wa, sa).
+adjacentTo(nt, sa).
+adjacentTo(nt, q).
+adjacentTo(sa, q).
+adjacentTo(sa, nsw).
+adjacentTo(sa, v).
+adjacentTo(nsw, q).
+adjacentTo(nsw, v).
+
+% This is necessary to get that X is adjacent to Y
+% when Y is adjacent to X :) The queries should be
+% done only with adjacent(X,Y) and not adjacenTo(X,Y)
+adjacent(X,Y) :-
+    adjacentTo(X,Y).
+adjacent(X,Y) :-
+    adjacentTo(Y,X).
