@@ -1,0 +1,53 @@
+female(concha).
+female(conchi).
+male(jose).
+male(alejandro).
+male(javier).
+male(pino).
+
+parent(jose, alejandro).
+parent(conchi, alejandro).
+parent(jose, javier).
+parent(conchi, javier).
+parent(concha, conchi).
+parent(concha, pino).
+parent(pino, david).
+parent(pino, paloma).
+
+mother(X,Y) :-
+    female(X),
+    parent(X,Y).
+
+father(X,Y) :-
+    male(X),
+    parent(X,Y).
+
+sibling(X,Y) :-
+    parent(Z,X),
+    parent(Z,Y),
+    X\=Y.
+
+sister(X,Y) :-
+    sibling(X,Y),
+    female(X).
+
+brother(X,Y) :-
+    sibling(X,Y),
+    male(X).
+
+grandmother(X,Y) :-
+    mother(X,Z),
+    parent(Z,Y).
+
+grandfather(X,Y) :-
+    father(X,Z),
+    parent(Z,Y).
+
+uncle(X,Y) :-
+    sibling(X,Z),
+    parent(Z,Y).
+
+cousin(X,Y) :-
+    parent(P,X),
+    parent(Q,Y),
+    sibling(P,Q).
