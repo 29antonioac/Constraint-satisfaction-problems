@@ -1,0 +1,35 @@
+% SUCCESS: X is unified with the constant hans
+X = hans.
+
+% FAILURE: two different constants cannot be unified
+anja = hans.
+
+% SUCCESS: the first line unifies the variable X with hans,
+% and the second Y with X, i.e., with hans.
+X = hans,
+X = Y.
+
+% SUCCESS: the variable X is unified with the predicate
+% happy(hans)
+X = happy(hans).
+
+% FAILURE: Y is undefined.
+X is Y.
+
+% FAILURE: The predicate 2+1 cannot be unified with 3, unless
+% the arithmetic expression is reduced
+2+1 = 3.
+
+% SUCCESS: The variable X is unified with the constant a
+f(X,a) = f(a,X).
+
+% FAILURE: X cannot be unified with anja and with hans at the
+% same time
+likes(anja, X) = likes(X, hans).
+
+% SUCCESS: The variable A is unified with the predicate b(c)
+A = b(c).
+
+% FAILURE: a constant cannot be unified to another constant
+% (in this case, a predicate).
+a = b(c).
