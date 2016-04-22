@@ -1,0 +1,13 @@
+dist(Hamburg,Bremen,80).
+dist(Hamburg, Berlin, 230).
+dist(Bremen, Dortmund, 200).
+dist(Hannover, Nuernberg, 380).
+dist(Dortmund, Koeln, 80).
+dist(Kassel, Frankfurt, 180).
+dist(Nuernberg, Muenchen, 160).
+dist(Hamburg, Hannover,110).
+dist(Bremen, Hannover,100).
+dist(Hannover, Kassel,140).
+dist(Dortmund, Kassel,130).
+dist(Kassel, Wuerzburg,180).
+dist(Frankfurt, Wuerzburg,110).
