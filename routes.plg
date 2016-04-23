@@ -1,7 +1,3 @@
-miembro(X, [X | _ ]).
-miembro(X, [ _ | Tail]) :-
-    miembro(X, Tail).
-
 distTo(hamburg, bremen,80).
 distTo(hamburg, berlin, 230).
 distTo(bremen, dortmund, 200).
@@ -35,6 +31,6 @@ route(From, To, Route) :-
 
 route(From, To, Route) :-
     dist(From, Aux, _),
-    not( member(Aux, Route) ),
-    append(Aux, Route),
-    route(Aux, To, Route).
+    \+ member(Aux, Route),
+    append(Aux, Route, NewRoute),
+    route(Aux, To, NewRoute).
