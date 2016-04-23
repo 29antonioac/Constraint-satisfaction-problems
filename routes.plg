@@ -2,11 +2,6 @@ miembro(X, [X | _ ]).
 miembro(X, [ _ | Tail]) :-
     miembro(X, Tail).
 
-append([],L,L).
-append([X|L1], L2, [X|Result]) :-
-    append(L1,L2,Result).
-
-
 distTo(hamburg, bremen,80).
 distTo(hamburg, berlin, 230).
 distTo(bremen, dortmund, 200).
@@ -35,10 +30,11 @@ route(From, To) :-
     route(Aux, To).
 
 route(From, To, Route) :-
+    Route = [],
     dist(From, To, _).
 
 route(From, To, Route) :-
     dist(From, Aux, _),
     not( member(Aux, Route) ),
-    Route is [Aux | Route],
+    append(Aux, Route),
     route(Aux, To, Route).
