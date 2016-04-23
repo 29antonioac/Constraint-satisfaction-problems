@@ -14,12 +14,12 @@ distTo(frankfurt, wuerzburg,110).
 
 dist(From,To,Km) :-
     distTo(From,To,Km).
-dist(From,To,Km) :-
-    distTo(To,From,Km).
+% dist(From,To,Km) :-
+%     distTo(To,From,Km).
 
 route(From, To) :-
-    dist(From, To, Km).
+    dist(From, To, _).
 
 route(From, To) :-
-    dist(From, Aux, Km),
+    dist(From, Aux, _),
     route(Aux, To).
