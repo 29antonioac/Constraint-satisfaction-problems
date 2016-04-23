@@ -1,3 +1,12 @@
+miembro(X, [X | _ ]).
+miembro(X, [ _ | Tail]) :-
+    miembro(X, Tail).
+
+append([],L,L).
+append([X|L1], L2, [X|Result]) :-
+    append(L1,L2,Result).
+
+
 distTo(hamburg, bremen,80).
 distTo(hamburg, berlin, 230).
 distTo(bremen, dortmund, 200).
@@ -14,8 +23,8 @@ distTo(frankfurt, wuerzburg,110).
 
 dist(From,To,Km) :-
     distTo(From,To,Km).
-% dist(From,To,Km) :-
-%     distTo(To,From,Km).
+dist(From,To,Km) :-
+    distTo(To,From,Km).
 
 route(From, To) :-
     dist(From, To, _).
@@ -24,3 +33,12 @@ route(From, To) :-
     dist(From, Aux, _),
     write(Aux),
     route(Aux, To).
+
+route(From, To, Route) :-
+    dist(From, To, _).
+
+route(From, To, Route) :-
+    dist(From, Aux, _),
+    not( member(Aux, Route) ),
+    Route is [Aux | Route],
+    route(Aux, To, Route).
