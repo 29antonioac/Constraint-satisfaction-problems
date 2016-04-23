@@ -16,3 +16,10 @@ dist(X,Y,Z) :-
     distTo(X,Y,Z).
 dist(X,Y,Z) :-
     distTo(Y,X,Z).
+
+route(From, To) :-
+    dist(From, To, Z).
+
+route(From, To) :-
+    dist(From, Aux, Z),
+    route(Aux, To).
