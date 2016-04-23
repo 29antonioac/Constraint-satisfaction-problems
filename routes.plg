@@ -26,11 +26,12 @@ route(From, To) :-
     route(Aux, To).
 
 route(From, To, Route) :-
-    Route = [],
+    \+ member(To, Route),
     dist(From, To, _).
 
 route(From, To, Route) :-
     dist(From, Aux, _),
     \+ member(Aux, Route),
-    append(Aux, Route, NewRoute),
+    append([Aux], Route, NewRoute),
+    write(NewRoute),nl,
     route(Aux, To, NewRoute).
