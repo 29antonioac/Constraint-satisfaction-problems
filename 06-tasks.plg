@@ -7,3 +7,9 @@ tarea(f, 'Ventanas', 1, [c,d]).
 tarea(g, 'Jardín', 1, [c,d]).
 tarea(h, 'Techado', 3, [a]).
 tarea(i, 'Pintado interior', 2, [f,h]).
+
+
+identificadores([a,b,c,d,e,f,g,h,i]).
+descripciones(['Levantar Muros','Carpintería de tejado','Poner tejado','Instalación eléctrica','Pintado fachada','Ventanas','Jardín','Techado','Pintado interior']).
+duraciones([7,3,1,8,2,1,1,3,2]).
+predecesoras([ [],[a],[b],[a],[c,d],[c,d],[c,d],[a],[f,h] ]).
