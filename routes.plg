@@ -22,4 +22,5 @@ route(From, To) :-
 
 route(From, To) :-
     dist(From, Aux, Z),
+    write(Aux),
     route(Aux, To).
