@@ -25,13 +25,23 @@ route(From, To) :-
     write(Aux),
     route(Aux, To).
 
+% route(From, To, Route) :-
+%     \+ member(To, Route),
+%     dist(From, To, _).
+%
+% route(From, To, Route) :-
+%     dist(From, Aux, _),
+%     \+ member(Aux, Route),
+%     append([Aux], Route, NewRoute),
+%     write(NewRoute),nl,
+%     route(Aux, To, NewRoute).
+
 route(From, To, Route) :-
-    \+ member(To, Route),
+    [] = Route,
     dist(From, To, _).
 
 route(From, To, Route) :-
-    dist(From, Aux, _),
-    \+ member(Aux, Route),
-    append([Aux], Route, NewRoute),
-    write(NewRoute),nl,
-    route(Aux, To, NewRoute).
+    write(Route),nl,
+    [Head | Tail] = Route,
+    dist(From, Head, _),
+    route(Head, To, Tail).
