@@ -1,0 +1,9 @@
+tarea(a, 'Levantar Muros', 7, []).
+tarea(b, 'Carpintería de tejado', 3, [a]).
+tarea(c, 'Poner tejado', 1, [b]).
+tarea(d, 'Instalación eléctrica', 8, [a]).
+tarea(e, 'Pintado fachada', 2, [c,d]).
+tarea(f, 'Ventanas', 1, [c,d]).
+tarea(g, 'Jardín', 1, [c,d]).
+tarea(h, 'Techado', 3, [a]).
+tarea(i, 'Pintado interior', 2, [f,h]).
