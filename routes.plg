@@ -12,14 +12,14 @@ distTo(dortmund, kassel,130).
 distTo(kassel, wuerzburg,180).
 distTo(frankfurt, wuerzburg,110).
 
-dist(X,Y,Z) :-
-    distTo(X,Y,Z).
-dist(X,Y,Z) :-
-    distTo(Y,X,Z).
+dist(From,To,Km) :-
+    distTo(From,To,Km).
+dist(From,To,Km) :-
+    distTo(To,From,Km).
 
 route(From, To) :-
-    dist(From, To, Z).
+    dist(From, To, Km).
 
 route(From, To) :-
-    dist(From, Aux, Z),
+    dist(From, Aux, Km),
     route(Aux, To).
