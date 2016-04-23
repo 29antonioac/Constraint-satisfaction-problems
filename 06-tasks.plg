@@ -8,8 +8,27 @@ tarea(g, 'Jardín', 1, [c,d]).
 tarea(h, 'Techado', 3, [a]).
 tarea(i, 'Pintado interior', 2, [f,h]).
 
+identificadores:-
+  findall(X, tarea(X, _, _, _), L),
+  write(L).
 
-identificadores([a,b,c,d,e,f,g,h,i]).
-descripciones(['Levantar Muros','Carpintería de tejado','Poner tejado','Instalación eléctrica','Pintado fachada','Ventanas','Jardín','Techado','Pintado interior']).
-duraciones([7,3,1,8,2,1,1,3,2]).
-predecesoras([ [],[a],[b],[a],[c,d],[c,d],[c,d],[a],[f,h] ]).
+descripciones:-
+  findall(X, tarea(_, X, _, _), L),
+  write(L).
+
+duraciones:-
+  findall(X, tarea(_, _, X, _), L),
+  write(L).
+
+predecesoras:-
+  findall(X, tarea(_, _, _, X), L),
+  write(L).
+
+sucesores(X) :-
+  findall(Y, (tarea(Y, _, _, P), member(X,P)), L),
+  write(L).
+
+%%%%%%%%%% A partir de aquí no funca %%%%%%%%%%
+sucesores:-
+  findall(X, sucesores(X), L),
+  write(L).
