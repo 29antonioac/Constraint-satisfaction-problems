@@ -1,16 +1,16 @@
-distTo(Hamburg,Bremen,80).
-distTo(Hamburg, Berlin, 230).
-distTo(Bremen, Dortmund, 200).
-distTo(Hannover, Nuernberg, 380).
-distTo(Dortmund, Koeln, 80).
-distTo(Kassel, Frankfurt, 180).
-distTo(Nuernberg, Muenchen, 160).
-distTo(Hamburg, Hannover,110).
-distTo(Bremen, Hannover,100).
-distTo(Hannover, Kassel,140).
-distTo(Dortmund, Kassel,130).
-distTo(Kassel, Wuerzburg,180).
-distTo(Frankfurt, Wuerzburg,110).
+distTo(hamburg, bremen,80).
+distTo(hamburg, berlin, 230).
+distTo(bremen, dortmund, 200).
+distTo(hannover, nuernberg, 380).
+distTo(dortmund, koeln, 80).
+distTo(kassel, frankfurt, 180).
+distTo(nuernberg, muenchen, 160).
+distTo(hamburg, hannover,110).
+distTo(bremen, hannover,100).
+distTo(hannover, kassel,140).
+distTo(dortmund, kassel,130).
+distTo(kassel, wuerzburg,180).
+distTo(frankfurt, wuerzburg,110).
 
 dist(X,Y,Z) :-
     distTo(X,Y,Z).
