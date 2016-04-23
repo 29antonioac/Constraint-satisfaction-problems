@@ -1,3 +1,8 @@
+noDuplicates(Lst) :-
+    setof(X, member(X, Lst), Set),
+    length(Lst, N),
+    length(Set, N).
+
 distTo(hamburg, bremen,80).
 distTo(hamburg, berlin, 230).
 distTo(bremen, dortmund, 200).
@@ -17,31 +22,35 @@ dist(From,To,Km) :-
 dist(From,To,Km) :-
     distTo(To,From,Km).
 
-route(From, To) :-
-    dist(From, To, _).
-
-route(From, To) :-
-    dist(From, Aux, _),
-    write(Aux),nl,
-    route(Aux, To).
-
-% route(From, To, Route) :-
-%     \+ member(To, Route),
+% route(From, To) :-
 %     dist(From, To, _).
 %
-% route(From, To, Route) :-
+% route(From, To) :-
 %     dist(From, Aux, _),
-%     \+ member(Aux, Route),
-%     append([Aux], Route, NewRoute),
-%     write(NewRoute),nl,
-%     route(Aux, To, NewRoute).
+%     write(Aux),nl,
+%     route(Aux, To).
 
 route(From, To, Route) :-
     [] = Route,
     dist(From, To, _).
 
+% route(From, To, Route) :-
+%     is_set(Route),
+%     [Head | Tail] = Route,
+%     [] = Tail,
+%     dist(From, Head, _),
+%     dist(Head, To, _),
+%     write('From '),write(From),
+%     write(' to '),write(To),
+%     write(' through '),write(Route),nl.
+
 route(From, To, Route) :-
-    write(Route),nl,
+    write('From '),write(From),
+    write(' to '),write(To),
+
+    noDuplicates(Route),
     [Head | Tail] = Route,
     dist(From, Head, _),
-    route(Head, To, Tail).
+    route(Head, To, Tail),
+
+    write(' through '),write(Route),nl.
