@@ -45,12 +45,11 @@ route(From, To, Route) :-
 %     write(' through '),write(Route),nl.
 
 route(From, To, Route) :-
-    write('From '),write(From),
-    write(' to '),write(To),
-
-    noDuplicates(Route),
     [Head | Tail] = Route,
+    noDuplicates(Route),
     dist(From, Head, _),
     route(Head, To, Tail),
 
+    write('From '),write(From),
+    write(' to '),write(To),
     write(' through '),write(Route),nl.
