@@ -49,11 +49,11 @@ route(From, To, Route) :-
     write(' to '),write(To),
 
     % From \= To,
-
+    nonvar(Route),
     noDuplicates(Route),
     [Head | Tail] = Route,
     dist(From, Head, _),
     route(Head, To, Tail),
-    From \= To, 
+    From \= To,
 
     write(' through '),write(Route),nl.
