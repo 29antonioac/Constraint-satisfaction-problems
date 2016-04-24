@@ -59,7 +59,7 @@ route(From, To, Route) :-
 
 route(From, To, Route) :-
     var(Route),
-    Route = [From],
+    Route = [],
     route__(From, To, Route).
 
 route__(From, To, Route) :-
@@ -68,8 +68,9 @@ route__(From, To, Route) :-
 route__(From, To, Route) :-
     dist(From, Aux, _),
     \+ member(Aux, Route),
-    append([Aux], Route, NewRoute),
+    append(Route, [Aux], NewRoute),
     route__(Aux, To, NewRoute),
+    From \= To,
 
     write('From '),write(From),
     write(' to '),write(To),
