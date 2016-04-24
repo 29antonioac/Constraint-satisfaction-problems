@@ -1,0 +1,11 @@
+directPath(a, b).
+directPath(a, c).
+directPath(b, d).
+directPath(c, d).
+directPath(d, e).
+
+path(X, Y) :-
+  directPath(X, Y).
+path(X, Y) :-
+  directPath(X, Aux),
+  path(Aux, Y).
