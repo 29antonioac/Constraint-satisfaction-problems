@@ -45,7 +45,6 @@ route(From, To, Route) :-
 %     write(' through '),write(Route),nl.
 
 route(From, To, Route) :-
-    % From \= To,
     nonvar(Route),
     noDuplicates(Route),
     [Head | Tail] = Route,
