@@ -56,4 +56,6 @@ route(From, To, Route) :-
     route(Head, To, Tail),
     From \= To,
 
+    write('From '),write(From),
+    write(' to '),write(To),
     write(' through '),write(Route),nl.
