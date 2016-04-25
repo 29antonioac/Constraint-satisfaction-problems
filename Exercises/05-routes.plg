@@ -22,31 +22,15 @@ dist(From,To,Km) :-
 dist(From,To,Km) :-
     distTo(To,From,Km).
 
-% route(From, To) :-
-%     dist(From, To, _).
-%
-% route(From, To) :-
-%     dist(From, Aux, _),
-%     write(Aux),nl,
-%     route(Aux, To).
+%%%%%%%%%%% CASO RUTA INSTANCIADA %%%%%%%%%%%
 
 route(From, To, Route) :-
     [] = Route,
     dist(From, To, _).
 
-% route(From, To, Route) :-
-%     is_set(Route),
-%     [Head | Tail] = Route,
-%     [] = Tail,
-%     dist(From, Head, _),
-%     dist(Head, To, _),
-%     write('From '),write(From),
-%     write(' to '),write(To),
-%     write(' through '),write(Route),nl.
-
 route(From, To, Route) :-
     nonvar(Route),
-    % noDuplicates(Route),
+    % noDuplicates(Route), %Suponemos que Route no tiene duplicados
     [Head | Tail] = Route,
     dist(From, Head, _),
     route(Head, To, Tail),
@@ -56,22 +40,16 @@ route(From, To, Route) :-
     write(' to '),write(To),
     write(' through '),write(Route),nl.
 
+%%%%%%%%%%% CASO RUTA NO INSTANCIADA %%%%%%%%%%
 
 route(From, To, Route) :-
     var(Route),
-    Route = [],
+    length(Route, _),
     route__(From, To, Route).
 
-route__(From, To, Route) :-
-    dist(From, To, _).
-
-route__(From, To, Route) :-
-    dist(From, Aux, _),
-    \+ member(Aux, Route),
-    append(Route, [Aux], NewRoute),
-    route__(Aux, To, NewRoute),
-    From \= To,
-
-    write('From '),write(From),
-    write(' to '),write(To),
-    write(' through '),write(Route),nl.
+route__(To, To, []).
+route__(From, To, [X|Route]) :-
+    dist(From, X, _),
+    route__(X, To, Route),
+    \+ member(X, Route),
+    \+ member(From, [X|Route]).
