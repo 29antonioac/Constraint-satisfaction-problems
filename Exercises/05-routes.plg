@@ -24,8 +24,7 @@ dist(From,To,Km) :-
 
 %%%%%%%%%%% CASO RUTA INSTANCIADA %%%%%%%%%%%
 
-route(From, To, Route) :-
-    [] = Route,
+route(From, To, []) :-
     dist(From, To, _).
 
 route(From, To, Route) :-
@@ -34,17 +33,13 @@ route(From, To, Route) :-
     [Head | Tail] = Route,
     dist(From, Head, _),
     route(Head, To, Tail),
-    From \= To,
-
-    write('From '),write(From),
-    write(' to '),write(To),
-    write(' through '),write(Route),nl.
+    From \= To.
 
 %%%%%%%%%%% CASO RUTA NO INSTANCIADA %%%%%%%%%%
 
 route(From, To, Route) :-
     var(Route),
-    length(Route, _),
+    length(Route, _), %Debe ser una lista
     route__(From, To, Route).
 
 route__(To, To, []).
@@ -53,3 +48,43 @@ route__(From, To, [X|Route]) :-
     route__(X, To, Route),
     \+ member(X, Route),
     \+ member(From, [X|Route]).
+
+%%%%%%%%%%%%%%%% SHORTEST PATH %%%%%%%%%%%%%%%%
+route(From, To, [], Km) :-
+    dist(From, To, Km).
+
+route(From, To, Route, Km) :-
+    nonvar(Route),
+    % noDuplicates(Route), %Suponemos que Route no tiene duplicados
+    [Head | Tail] = Route,
+    dist(From, Head, Dist),
+    route(Head, To, Tail, DistRest),
+    From \= To,
+    Km is Dist+DistRest.
+
+route(From, To, Route, Km) :-
+    var(Route),
+    length(Route, _), %Debe ser una lista
+    route__(From, To, Route, Km).
+
+route__(From, To, [To], Km) :-
+    dist(From, To, Km).
+
+route__(From, To, [X|Route], Km) :-
+    dist(From, X, Dist),
+    route__(X, To, Route, DistRest),
+    \+ member(X, Route),
+    \+ member(From, [X|Route]),
+    Km is Dist+DistRest.
+
+listMinimum([L|Ls], Min) :-
+    listMinimum__(Ls, L, Min).
+
+listMinimum__([], Min, Min).
+listMinimum__([L|Ls], Min0, Min) :-
+    Min1 is min(L, Min0),
+    listMinimum__(Ls, Min1, Min).
+
+shortestPath(From, To, Route, MinDist) :-
+    findall(Km, route(From, To, Route, Km), ListDistances),
+    listMinimum(ListDistances, MinDist).
