@@ -28,7 +28,11 @@ sucesores(X) :-
   findall(Y, (tarea(Y, _, _, P), member(X,P)), L).
   % write(L).
 
-%%%%%%%%%% A partir de aquí no funca %%%%%%%%%%
 sucesores:-
   findall(Z, (tarea(Tarea, _, _, _), findall(Suces, (tarea(Suces, _, _, Predec), member(Tarea,Predec)), Z)), L),
   write(L).
+
+
+sucesoresTupla:-
+    findall(succ(Tarea,Z), (tarea(Tarea, _, _, _), findall(Suces, (tarea(Suces, _, _, Predec), member(Tarea,Predec)), Z)), L),
+    write(L).
