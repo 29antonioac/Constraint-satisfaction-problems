@@ -36,3 +36,11 @@ sucesores:-
 sucesoresTupla:-
     findall(succ(Tarea,Z), (tarea(Tarea, _, _, _), findall(Suces, (tarea(Suces, _, _, Predec), member(Tarea,Predec)), Z)), L),
     write(L).
+
+escribeSucesores:-
+    tarea(Tarea, NombreTarea, _, _),
+    findall(Suc, (tarea(Suc, _, _, Predec), member(Tarea,Predec)), L),
+    write('Sucesoras de '), write(NombreTarea), write(': '), write(L),nl,
+    fail.
+
+escribeSucesores.
