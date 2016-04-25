@@ -25,8 +25,8 @@ predecesoras:-
   write(L).
 
 sucesores(X) :-
-  findall(Y, (tarea(Y, _, _, P), member(X,P)), L).
-  % write(L).
+  findall(Y, (tarea(Y, _, _, P), member(X,P)), L),
+  write(L).
 
 sucesores:-
   findall(Z, (tarea(Tarea, _, _, _), findall(Suces, (tarea(Suces, _, _, Predec), member(Tarea,Predec)), Z)), L),
@@ -44,3 +44,7 @@ escribeSucesores:-
     fail.
 
 escribeSucesores.
+
+sucesores(Tarea, DuracionMin) :-
+  findall(Y, (tarea(Y, _, Duracion, P), Duracion > DuracionMin, member(Tarea,P)), L),
+  write(L).
