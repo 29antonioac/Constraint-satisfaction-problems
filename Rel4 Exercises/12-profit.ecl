@@ -26,3 +26,30 @@ profit2(Workers) :-
   (foreach(W, Workers) do
     indomain(W)
   ).
+
+%%% Third version: CSP with the products as variables
+profit3(Products) :-
+    %%% Pi is the i-th product
+    Products = [P1,P2,P3,P4],
+
+    %%% j is the j-th product
+    Products::[1,2,3,4],
+
+    %%% Restrictions
+    %%% Every worker should work just one product
+    alldifferent(Products),
+
+    %%% The effectivity of i-th product is the index of the
+    %%% product in the list of effectivities provided.
+    element(P1, [7,8,4,3], E1),
+    element(P2, [1,2,3,1], E2),
+    element(P3, [3,5,7,6], E3),
+    element(P4, [4,1,2,3], E4),
+
+    %%% The total effectivity should be at least 19
+    E1 + E2 + E3 + E4 #>= 19,
+
+    %%% Search
+    (foreach(P, Products) do
+        indomain(P)
+    ).
