@@ -20,18 +20,5 @@ schedule(Workers) :-
   3 #=< David, David #=< 4,
   1 #=< Maria, Maria #=< 6,
 
-  % %%% Women should teach before men
-  % Juana #< Pedro,
-  % Juana #< Yago,
-  % Juana #< David,
-  % Ana #< Pedro,
-  % Ana #< Yago,
-  % Ana #< David,
-  % Maria #< Pedro,
-  % Maria #< Yago,
-  % Maria #< David,
-
-  %%% Search
-  (foreach(W, Workers) do
-    indomain(W)
-  ).
+  % %%% Search
+  labeling(Workers).
