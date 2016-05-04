@@ -1,44 +1,84 @@
 :-lib(ic).
 %:-lib(ic_global).
 
-% First ---non-working :(--- version
-profit(Matrix) :-
-    dim(Matrix,[4,4]),
-    Matrix[1..4,1..4]::[0,1],
+profitBruteForce(Assignments) :-
+    Assignments = [ W1P1, W1P2, W1P3, W1P4,
+                    W2P1, W2P2, W2P3, W2P4,
+                    W3P1, W3P2, W3P3, W3P4,
+                    W4P1, W4P2, W4P3, W4P4],
 
     % Matrix of profits
-    Profit = []([](7,1,3,4),
-                [](8,2,5,1),
-                [](4,3,7,2),
-                [](3,1,6,3)),
+    P = []( [](7,1,3,4),
+            [](8,2,5,1),
+            [](4,3,7,2),
+            [](3,1,6,3)),
 
-    % Sum of rows and cols should be 1
-    (for(I,1,4), param(Matrix) do
-        Row is Matrix[I,1..4],
-        Col is Matrix[1..4,I],
-        sumlist(Row, 1),
-        sumlist(Col, 1)
-    ),
+    Assignments :: [0,1],
 
-    % We try to compute Matrix*Profit (element-wise)
-    dim(ProfitsMatrix,[4,4]),
+    % Sum of rows = 1
+    W1P1 + W1P2 + W1P3 + W1P4 #= 1,
+    W2P1 + W2P2 + W2P3 + W2P4 #= 1,
+    W3P1 + W3P2 + W3P3 + W3P4 #= 1,
+    W4P1 + W4P2 + W4P3 + W4P4 #= 1,
 
-    (for(I,1,4), param(Matrix,ProfitsMatrix,Profit) do
-        (for(J,1,4), param(I,Matrix,ProfitsMatrix,Profit) do
-            Val is Matrix[I,J],
-            Pro is Profit[I,J],
-            ProfitsMatrix[I,J] is Val * Pro
-        )
-    ),
+    % Sum of cols = 1
+    W1P1 + W2P1 + W3P1 + W4P1 #= 1,
+    W1P2 + W2P2 + W3P2 + W4P2 #= 1,
+    W1P3 + W2P3 + W3P3 + W4P3 #= 1,
+    W1P4 + W2P4 + W3P4 + W4P4 #= 1,
 
-    sumlist(ProfitsMatrix[1,1..4],SumProfits1),
-    sumlist(ProfitsMatrix[1,1..4],SumProfits2),
-    sumlist(ProfitsMatrix[1,1..4],SumProfits3),
-    sumlist(ProfitsMatrix[1,1..4],SumProfits4),
+    % Profit >= 19
+    W1P1 * P[1,1] + W1P2 * P[1,2] + W1P3 * P[1,3] + W1P4 * P[1,4] +
+    W2P1 * P[2,1] + W2P2 * P[2,2] + W2P3 * P[2,3] + W2P4 * P[2,4] +
+    W3P1 * P[3,1] + W3P2 * P[3,2] + W3P3 * P[3,3] + W3P4 * P[3,4] +
+    W4P1 * P[4,1] + W4P2 * P[4,2] + W4P3 * P[4,3] + W4P4 * P[4,4] #>= 19,
 
-    SumProfits1 + SumProfits2 + SumProfits3 + SumProfits4 #>= 19,
+    %%% Search
+    (foreach(A, Assignments) do
+        indomain(A)
+    ).
 
-    labeling(Matrix[1..4,1..4]).
+
+
+
+% % First ---non-working :(--- version
+% profit(Matrix) :-
+%     dim(Matrix,[4,4]),
+%     Matrix[1..4,1..4]::[0,1],
+%
+%     % Matrix of profits
+%     Profit = []([](7,1,3,4),
+%                 [](8,2,5,1),
+%                 [](4,3,7,2),
+%                 [](3,1,6,3)),
+%
+%     % Sum of rows and cols should be 1
+%     (for(I,1,4), param(Matrix) do
+%         Row is Matrix[I,1..4],
+%         Col is Matrix[1..4,I],
+%         sumlist(Row, 1),
+%         sumlist(Col, 1)
+%     ),
+%
+%     % We try to compute Matrix*Profit (element-wise)
+%     dim(ProfitsMatrix,[4,4]),
+%
+%     (for(I,1,4), param(Matrix,ProfitsMatrix,Profit) do
+%         (for(J,1,4), param(I,Matrix,ProfitsMatrix,Profit) do
+%             Val is Matrix[I,J],
+%             Pro is Profit[I,J],
+%             ProfitsMatrix[I,J] is Val * Pro
+%         )
+%     ),
+%
+%     sumlist(ProfitsMatrix[1,1..4],SumProfits1),
+%     sumlist(ProfitsMatrix[1,1..4],SumProfits2),
+%     sumlist(ProfitsMatrix[1,1..4],SumProfits3),
+%     sumlist(ProfitsMatrix[1,1..4],SumProfits4),
+%
+%     SumProfits1 + SumProfits2 + SumProfits3 + SumProfits4 #>= 19,
+%
+%     labeling(Matrix[1..4,1..4]).
 
 %%% Segunda versión: CSP tomando como variables los trabajadores
 profit2(Workers) :-
