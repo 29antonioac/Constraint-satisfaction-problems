@@ -22,3 +22,15 @@ W, P, C
 
 Restricción de capacidad: 4W + 3P + 2C <= 9
 Restricción de coste: 15W + 10P + 7C >= 30
+
+## Maximización
+
+Sólo se puede minimizar (minimize en las librerías).
+Tenemos que hacer
+
+```
+maximizar(Beneficio):-
+  coste #= 15*W + 10*P + 7*C,
+  costeNeg #= -coste,
+  minimize(labeling(Vars), CosteNeg)
+```
