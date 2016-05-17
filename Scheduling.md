@@ -38,3 +38,23 @@ D -> C
 ## Ejemplo de restricciones
 
 A -> B => Astart + Adur <= Bstart
+
+# Parte 2
+
+Recursos compartidos.
+La restricción para tareas que compartan recursos sería:
+Bstart + Bdur <= Estart or Estart + Edur <= Bstart
+La disyunción en fd es con `#\/`
+Los ejercicios 8 y 9 son así.
+
+
+# Parte 3
+
+Queremos minimizar el tiempo total de ejecución
+Makespan = Tiempo total de ejecución
+
+La idea es añadir una tarea más, que sea la que se ejecute al final, detras de TODAS LAS DEMÁS QUE TENGAN SUCESORA, B,C,D en nuestro caso) y tenemos que minimizar el inicio de esta tarea ficticia.
+
+Cstart + Cdur <= Lstart
+
+Podemos poner early como 0 y duracion como 0. Lo malo es el last: Tenemos que asegurarnos que no se solape con las demás.
