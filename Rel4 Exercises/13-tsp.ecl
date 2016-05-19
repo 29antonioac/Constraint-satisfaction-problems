@@ -2,7 +2,7 @@
 :- import circuit/1 from gfd.
 
 tsp(Cities,Cost):-
-    % Variables. Xi es la ciudad que se visita en el i-ésimo lugar
+    % Variables. Xi es el puesto que ocupa la ciudad i-ésima en el circuito
 	Cities=[X1, X2, X3, X4, X5, X6, X7],
     Cities::[1..7],
 
