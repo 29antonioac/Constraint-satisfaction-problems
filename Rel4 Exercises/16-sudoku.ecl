@@ -56,6 +56,6 @@ sudoku(N, Board) :-
 	    alldifferent(SubSquare)
 	),
 
-  % Metemos cada Board en una lista de tableros Vars
+  % Pasamos la Board a una lista Vars
 	term_variables(Board, Vars),
 	labeling(Vars).
