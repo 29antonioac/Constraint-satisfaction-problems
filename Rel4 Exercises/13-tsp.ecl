@@ -1,4 +1,5 @@
 :-lib(fd).
+:- import circuit/1 from gfd.
 
 tsp(Cities,Cost):-
 	Cities=[X1, X2, X3, X4, X5, X6, X7],
@@ -13,6 +14,6 @@ tsp(Cities,Cost):-
 
   Cost #= CostX1+CostX2+CostX3+CostX4+CostX5+CostX6+CostX7,
 
-  gfd:circuit(Cities),
+  circuit(Cities),
 
   minimize(labeling(Cities), Cost).
