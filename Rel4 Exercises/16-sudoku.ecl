@@ -34,6 +34,7 @@ solve :-
 
 
 sudoku(N, Board) :-
+  % Tamaño del tablero: tamaño de la submatriz ^2
 	N2 is N*N,
 	% Dominio de las variables
 	Board[1..N2,1..N2] :: 1..N2,
@@ -48,11 +49,13 @@ sudoku(N, Board) :-
 
 	% No se pueden repetir elementos en submatrices 3x3
 	( multifor([I,J],1,N2,N), param(Board,N) do
+      % Cada submatriz es SubSquare y X es el elemento del tablero
 	    ( multifor([K,L],0,N-1), param(Board,I,J), foreach(X,SubSquare) do
 			X is Board[I+K,J+L]
 	    ),
 	    alldifferent(SubSquare)
 	),
 
+  % Metemos cada Board en una lista de tableros Vars
 	term_variables(Board, Vars),
 	labeling(Vars).
