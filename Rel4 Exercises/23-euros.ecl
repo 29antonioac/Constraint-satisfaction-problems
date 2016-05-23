@@ -1,3 +1,4 @@
+%Original code:https://github.com/algui91/Eclipse_CLP_Problems
 :- lib(ic).
 :- lib(ic_search).
 :- lib(branch_and_bound).
@@ -16,7 +17,7 @@
 */
 cambio(N):-
         Cambio = N,
-        % List is the (possibly empty) list of all instances of Term such that Goal is provable. 
+        % List is the (possibly empty) list of all instances of Term such that Goal is provable.
         findall(
                 [Cambio,NumMonedas,LD],
                 cambios(LD,NumMonedas,Cambio),L),

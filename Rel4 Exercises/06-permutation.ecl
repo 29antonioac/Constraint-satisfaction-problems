@@ -1,3 +1,4 @@
+%Original code:https://github.com/algui91/Eclipse_CLP_Problems
 :-lib(ic).
 
 % Considerar el siguiente problema:
