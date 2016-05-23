@@ -16,16 +16,16 @@ casa(Vars) :-
 
 	RTA+RTB+RTC #< END,
 
-	cumulative([SA,SB,SC,SD,SE,SF,SG,SH,SI], % Tiempos inicio
-		[4, 3, 3, 2, 4, 3, 1, 1, 2],						% Duraciones para TR1
-		[1, 1, 1, 1, 1, 1, 1, 1, 1],2),				 % Usos y cantidad de recursos compartidos
+	cumulative(	[SA,SB,SC,SD,SE,SF,SG,SH,SI], % Tiempos inicio
+				[4, 3, 3, 2, 4, 3, 1, 1, 2], % Duraciones para TR1
+				[1, 1, 1, 1, 1, 1, 1, 1, 1],2), % Usos y cantidad de recursos compartidos
 
-	cumulative([SA,SB,SC,SD,SE,SF,SG,SH,SI], % Tiempos inicio
-		[7, 5, 1, 5, 2, 2, 2, 3, 3],						% Duraciones para TR1
-		[1, 1, 1, 1, 1, 1, 1, 1, 1],2),				 % Usos y cantidad de recursos compartidos
+	cumulative(	[SA,SB,SC,SD,SE,SF,SG,SH,SI], % Tiempos inicio
+				[7, 5, 1, 5, 2, 2, 2, 3, 3], % Duraciones para TR2
+				[1, 1, 1, 1, 1, 1, 1, 1, 1],2), % Usos y cantidad de recursos compartidos
 
-	cumulative([SA,SB,SC,SD,SE,SF,SG,SH,SI], % Tiempos inicio
-		[10, 7, 4, 8, 6, 1, 3, 5, 4],						% Duraciones para TR1
-		[1, 1, 1, 1, 1, 1, 1, 1, 1],2),				 % Usos y cantidad de recursos compartidos
+	cumulative(	[SA,SB,SC,SD,SE,SF,SG,SH,SI], % Tiempos inicio
+				[10, 7, 4, 8, 6, 1, 3, 5, 4], % Duraciones para TR3
+				[1, 1, 1, 1, 1, 1, 1, 1, 1],2), % Usos y cantidad de recursos compartidos
 
 	minimize(labeling(Tareas),END).
