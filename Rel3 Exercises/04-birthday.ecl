@@ -6,8 +6,6 @@ birthday(Friends) :-
   Friends::[0..1],
 
   %%%% Declaración de restricciones
-  %%%% Cada locomotora tira de un tren cada vez
-
   Pedro + Carlos #>= 1,
   Rosa + Carlos #>= 1,
   Rosa + Teresa #>= 1,
