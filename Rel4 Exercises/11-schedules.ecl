@@ -20,5 +20,8 @@ schedule(Workers) :-
   3 #=< David, David #=< 4,
   1 #=< Maria, Maria #=< 6,
 
-  % %%% Search
-  labeling(Workers).
+  %%% Sum of women times
+  Juana + Ana + Maria #= T,
+
+  %%% Search minimizing women times
+  minimize(labeling(Workers),T).
