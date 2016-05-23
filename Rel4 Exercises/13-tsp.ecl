@@ -1,6 +1,11 @@
 :-lib(fd).
 :- import circuit/1 from gfd.
 
+% Por alguna razón que no terminamos de comprender, tras cargar este programa
+% es necesario llamar *dos* veces al prediucado tsp/2. La primera parece que la
+% necesita para cargar el circuit/1 de la librería gfd y la segunda ya funciona
+% sin problema
+
 tsp(Cities,Cost):-
     % Variables. Xi es el puesto que ocupa la ciudad i-ésima en el circuito
 	Cities=[X1, X2, X3, X4, X5, X6, X7],

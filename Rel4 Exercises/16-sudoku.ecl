@@ -25,9 +25,9 @@ solve :-
 
 	% Imprimimimos tablero
 	N2 is 9,
-	( for(I,1,N2), param(Board,N2) do
-	    ( for(J,1,N2), param(Board,I) do
-	    	X is Board[I,J],
+	( for(I, 1, N2), param(Board, N2) do
+	    ( for(J, 1, N2),  param(Board, I) do
+	    	X is Board[I, J],
 			printf(" %2d", [X])
 	    ), nl
 	), nl.
@@ -37,21 +37,21 @@ sudoku(N, Board) :-
   % Tamaño del tablero: tamaño de la submatriz ^2
 	N2 is N*N,
 	% Dominio de las variables
-	Board[1..N2,1..N2] :: 1..N2,
+	Board[1..N2, 1..N2] :: 1..N2,
 
 	% No se pueden repetir elementos en filas ni columnas
-	( for(I,1,N2), param(Board,N2) do
-	    Row is Board[I,1..N2],
+	( for(I, 1, N2), param(Board, N2) do
+	    Row is Board[I, 1..N2],
 	    alldifferent(Row),
-	    Col is Board[1..N2,I],
+	    Col is Board[1..N2, I],
 	    alldifferent(Col)
 	),
 
 	% No se pueden repetir elementos en submatrices 3x3
-	( multifor([I,J],1,N2,N), param(Board,N) do
+	( multifor([I, J], 1, N2, N), param(Board, N) do
       % Cada submatriz es SubSquare y X es el elemento del tablero
-	    ( multifor([K,L],0,N-1), param(Board,I,J), foreach(X,SubSquare) do
-			X is Board[I+K,J+L]
+	    ( multifor([K, L], 0, N-1), param(Board, I, J), foreach(X, SubSquare) do
+			X is Board[I+K, J+L]
 	    ),
 	    alldifferent(SubSquare)
 	),
