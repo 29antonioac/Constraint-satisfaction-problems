@@ -36,9 +36,19 @@ tareas(Vars) :-
 	I + 8 #=< Final,
 	J + 18 #=< Final,
 
-	cumulative(	[A,B,C,D,E,F,G,H,I,J], % Tiempos inicio
-				[7,7,7,2,2,2,2,8,8,18],
+    cumulative(	[A,B,C,D,E,F,G,H,I,J], % Tiempos inicio
+				[7,10,4,6,2,7,4,4,8,11],
 				[1,1,1,1,1,1,1,1,1,1],
-				3), % Usos y cantidad de recursos compartidos
+				1), % Usos y cantidad de recursos compartidos
+
+    cumulative(	[A,B,C,D,E,F,G,H,I,J], % Tiempos inicio
+    			[5,7,11,2,4,2,5,8,2,18],
+    			[1,1,1,1,1,1,1,1,1,1],
+    			1), % Usos y cantidad de recursos   compartidos
+
+    cumulative(	[A,B,C,D,E,F,G,H,I,J], % Tiempos inicio
+				[8,4,7,3,8,5,2,3,4,10],
+				[1,1,1,1,1,1,1,1,1,1],
+				1), % Usos y cantidad de recursos compartidos
 
 	minimize(labeling(Vars),Final). % Minimizamos la duracion
